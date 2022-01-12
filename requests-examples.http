@@ -1,0 +1,53 @@
+# получение объявлений
+GET {{baseUrl}}/advertisements/
+Content-Type: application/json
+
+###
+
+# получение объявлений с авторизацией
+GET {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 4b24649453b4481679e88d22209f3f851aeec575
+
+###
+
+# создание объявления
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 4b24649453b4481679e88d22209f3f851aeec575
+
+{
+  "title": "Carpet IKEA 313",
+  "description": "Срочно",
+  "status": "DRAFT"
+}
+
+###
+
+# удаление объявления
+DELETE {{baseUrl}}/advertisements/10/
+Authorization: Token 4b24649453b4481679e88d22209f3f851aeec575
+Content-Type: application/json
+
+###
+
+# попытка поменять объявление
+PATCH {{baseUrl}}/advertisements/9/
+Content-Type: application/json
+Authorization: Token 4b24649453b4481679e88d22209f3f851aeec575
+
+{
+  "status": "OPEN"
+}
+
+###
+
+# фильтрация по создателю
+GET {{baseUrl}}/advertisements/?creator=1
+Content-Type: application/json
+
+###
+
+# фильтрация по дате
+GET {{baseUrl}}/advertisements/?created_at_before=2022-10-01
+Content-Type: application/json
