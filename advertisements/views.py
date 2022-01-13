@@ -33,6 +33,8 @@ class AdvertisementViewSet(ModelViewSet):
     def get_permissions(self):
         if self.action in ['destroy', 'update', 'partial_update']:
             return [IsAuthenticated(), IsOwnerOrAdmin()]
+
         elif self.action == 'create':
             return [IsAuthenticated()]
+
         return []

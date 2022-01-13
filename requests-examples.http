@@ -7,37 +7,37 @@ Content-Type: application/json
 # получение объявлений с авторизацией
 GET {{baseUrl}}/advertisements/
 Content-Type: application/json
-Authorization: Token 4b24649453b4481679e88d22209f3f851aeec575
+Authorization: Token a64f9a3f922fbf74b39aa4e11c06a20e7c21093a
 
 ###
 
 # создание объявления
 POST {{baseUrl}}/advertisements/
 Content-Type: application/json
-Authorization: Token 4b24649453b4481679e88d22209f3f851aeec575
+Authorization: Token a64f9a3f922fbf74b39aa4e11c06a20e7c21093a
 
 {
   "title": "Carpet IKEA 313",
   "description": "Срочно",
-  "status": "DRAFT"
+  "status": "OPEN"
 }
 
 ###
 
 # удаление объявления
 DELETE {{baseUrl}}/advertisements/10/
-Authorization: Token 4b24649453b4481679e88d22209f3f851aeec575
+Authorization: Token a64f9a3f922fbf74b39aa4e11c06a20e7c21093a
 Content-Type: application/json
 
 ###
 
 # попытка поменять объявление
-PATCH {{baseUrl}}/advertisements/9/
+PATCH {{baseUrl}}/advertisements/7/
 Content-Type: application/json
-Authorization: Token 4b24649453b4481679e88d22209f3f851aeec575
+Authorization: Token a64f9a3f922fbf74b39aa4e11c06a20e7c21093a
 
 {
-  "status": "OPEN"
+  "status": "DRAFT"
 }
 
 ###

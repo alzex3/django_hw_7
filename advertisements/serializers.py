@@ -27,14 +27,28 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data["creator"] = self.context["request"].user
-        return super().create(validated_data)
 
-    def validate(self, data):
-        user_advertisements_count = Advertisement.objects.filter(
-            creator=self.context["request"].user.id
-        ).count()
+        user_open_advertisements = Advertisement.objects.filter(
+            creator=validated_data["creator"]
+        ).filter(status="OPEN").count()
 
-        if user_advertisements_count < 10:
-            return data
+        if user_open_advertisements < 10:
+            return super().create(validated_data)
         else:
-            raise serializers.ValidationError('Advertisements limit exceeded!')
+            raise serializers.ValidationError('Open advertisements limit exceeded!')
+
+    def update(self, instance, validated_data):
+        validated_data["creator"] = self.context["request"].user
+
+        if validated_data["status"] == "OPEN":
+
+            user_open_advertisements = Advertisement.objects.filter(
+                creator=validated_data["creator"]
+            ).filter(status="OPEN").count()
+
+            if user_open_advertisements < 10:
+                return super().update(instance, validated_data)
+            else:
+                raise serializers.ValidationError('Open advertisements limit exceeded!')
+
+        return super().update(instance, validated_data)
