@@ -37,7 +37,8 @@ Content-Type: application/json
 Authorization: Token a64f9a3f922fbf74b39aa4e11c06a20e7c21093a
 
 {
-  "status": "DRAFT"
+  "title": "Carpet IKEA 310",
+  "status": "CLOSED"
 }
 
 ###

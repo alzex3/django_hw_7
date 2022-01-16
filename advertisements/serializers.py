@@ -40,7 +40,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         validated_data["creator"] = self.context["request"].user
 
-        if validated_data["status"] == "OPEN":
+        if validated_data.get("status") == "OPEN":
 
             user_open_advertisements = Advertisement.objects.filter(
                 creator=validated_data["creator"]
